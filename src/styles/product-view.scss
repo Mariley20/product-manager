@@ -1,0 +1,10 @@
+.products-view {
+  &__header {
+    text-align: right;
+  }
+  &__create-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+}
