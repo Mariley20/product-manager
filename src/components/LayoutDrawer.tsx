@@ -7,16 +7,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { useAppStore } from '@/store/appStore';
 import { useNavigate } from 'react-router-dom';
-import { AccountCircle, Grid3x3, Home, ListAlt, VerifiedUser } from '@mui/icons-material';
-
-interface INavigationRoute {
-  text: string
-  path: string
-}
+import { AccountCircle, Home, ListAlt, VerifiedUser } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -24,15 +17,6 @@ export default function LayoutDrawer() {
   const navigate = useNavigate();
 
   const showDrawer = useAppStore((state) => state.showDrawer);
-  const sidebarItems: INavigationRoute[] = [
-    { text: 'Dashboard', path: '/' },
-    { text: 'Products', path: '/products' },
-    { text: 'Users', path: '/users' }
-  ]
-
-  const handleListItemClick = (sidebarItem: INavigationRoute) => {
-    navigate(sidebarItem.path)
-  }
 
   return (
     <Drawer
