@@ -16,7 +16,10 @@ function DefaultLayout() {
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
-      if (!user) { return }
+      if (!user) {
+        setLoaded(true)
+        return
+      }
       const userId = user.uid
       const meUser = await usersFB.getUserById(userId)
       setLoaded(true)
