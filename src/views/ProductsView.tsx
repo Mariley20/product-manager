@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import ProductCreateModal from "@/components/ProductCreateModal";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -16,7 +17,13 @@ import IconButton from "@mui/material/IconButton";
 import { Delete } from "@mui/icons-material";
 import productsFB from "@/services/productsFB";
 
-const productsHeaders = [
+interface IProductHeader {
+  id: string,
+  label: string, minWidth: number,
+  align: "center" | "left" | "right" | "inherit" | "justify" | undefined
+}
+
+const productsHeaders: IProductHeader[] = [
   { id: 'code', label: 'Code', minWidth: 170, align: 'center' },
   { id: 'name', label: 'Name', minWidth: 170, align: 'center' },
   { id: 'category_id', label: 'Category', minWidth: 170, align: 'center' },
@@ -24,8 +31,8 @@ const productsHeaders = [
 ]
 
 function ProductsView() {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [page,] = useState(0);
+  const [rowsPerPage,] = useState(10);
   const products = useProductsStore((state) => state.products);
   const setProducts = useProductsStore((state) => state.setProducts);
   const setProductCategories = useProductsStore((state) => state.setProductCategories);
@@ -60,7 +67,7 @@ function ProductsView() {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const deleteProduct = async (productId:string) => {
+  const deleteProduct = async (productId: string) => {
     try {
       await productsFB.deleteProductItem(productId)
     } catch (error) {
