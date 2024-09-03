@@ -113,10 +113,10 @@ function ProductsView() {
                           </TableCell>
                         );
                       }
-                      const value = row[column.id];
+                      const value = row[column.id as keyof IProduct];
                       return (
                         <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }}>
-                          {value}
+                          {value || ''}
                         </TableCell>
                       );
                     })}

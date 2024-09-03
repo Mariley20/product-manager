@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -19,8 +19,6 @@ export default function LayoutAppBar() {
   const navigate = useNavigate();
   
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-    React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -28,9 +26,6 @@ export default function LayoutAppBar() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
   const handleToggleClick = () => {
     console.log(showDrawer)
     setShowDrawer(!showDrawer);
@@ -38,7 +33,6 @@ export default function LayoutAppBar() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
   };
 
   const handleLogout = async () => {
