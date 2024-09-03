@@ -18,7 +18,7 @@ import { Delete } from "@mui/icons-material";
 import productsFB from "@/services/productsFB";
 
 interface IProductHeader {
-  id: string,
+  id: keyof IProduct,
   label: string, minWidth: number,
   align: "center" | "left" | "right" | "inherit" | "justify" | undefined
 }
@@ -113,10 +113,10 @@ function ProductsView() {
                           </TableCell>
                         );
                       }
-                      const value = row[column.id as keyof IProduct];
+                      const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }}>
-                          {value || ''}
+                          { typeof value === 'string' || typeof value === 'number' ? value : ''}
                         </TableCell>
                       );
                     })}
