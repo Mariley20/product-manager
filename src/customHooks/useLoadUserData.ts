@@ -31,6 +31,6 @@ export const useLoadUserData = () => {
   }, []);
 
   return {
-    loaded
+    isLoaded: loaded
   };
 };
