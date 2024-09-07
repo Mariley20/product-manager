@@ -40,7 +40,7 @@ function ProductsView() {
 
   useEffect(() => {
     const userId = auth.currentUser?.uid || ''
-    onSnapshot(collection(db, 'user_categories', userId, 'category'), (querySnapshot) => {
+    const unsubscribeProductCategoriesSnapshot = onSnapshot(collection(db, 'user_categories', userId, 'category'), (querySnapshot) => {
       const productCategories = querySnapshot.docs.map((doc) => {
         return {
           id: doc.id,
@@ -50,7 +50,7 @@ function ProductsView() {
       setProductCategories(productCategories)
     })
 
-    onSnapshot(collection(db, 'user_products', userId, 'product'), (querySnapshot) => {
+    const unsubscribeProductsSnapshot = onSnapshot(collection(db, 'user_products', userId, 'product'), (querySnapshot) => {
       const products = querySnapshot.docs.map((doc) => {
         return {
           id: doc.id,
@@ -60,6 +60,8 @@ function ProductsView() {
       setProducts(products)
     })
     return () => {
+      unsubscribeProductCategoriesSnapshot()
+      unsubscribeProductsSnapshot()
       console.log('Component unmounted');
     };
   }, []);
@@ -116,7 +118,7 @@ function ProductsView() {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }}>
-                          { typeof value === 'string' || typeof value === 'number' ? value : ''}
+                          {typeof value === 'string' || typeof value === 'number' ? value : ''}
                         </TableCell>
                       );
                     })}
